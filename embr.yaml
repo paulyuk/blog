@@ -1,0 +1,25 @@
+# Embr deployment configuration for the Dapr blog (Hugo + Docsy).
+# Hugo is provided via the `hugo-extended` npm package so it works on Embr's
+# Node.js platform. The built site (public/) is served by `serve` on $PORT.
+platform: nodejs
+platformVersion: "20"
+rootDirectory: daprblog
+autoDeploy: true
+
+buildCommand: "git -C .. submodule update --init --recursive && npm install && npx hugo --minify"
+
+run:
+  port: 8080
+  startCommand: "npx serve -l 8080 public --no-clipboard"
+
+static:
+  headers:
+    "*.css": "public, max-age=31536000, immutable"
+    "*.js": "public, max-age=31536000, immutable"
+    "*.png": "public, max-age=86400"
+    "*.jpg": "public, max-age=86400"
+    "*.svg": "public, max-age=86400"
+
+healthCheck:
+  path: /
+  expectedStatusCode: 200

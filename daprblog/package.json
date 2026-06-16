@@ -12,8 +12,16 @@
     "url": "https://github.com/dapr/blog/issues"
   },
   "homepage": "https://dapr.io",
+  "scripts": {
+    "build": "hugo --minify",
+    "start": "serve -l ${PORT:-8080} public --no-clipboard"
+  },
   "devDependencies": {
     "autoprefixer": "^10.4.17",
     "postcss-cli": "^11.0.0"
+  },
+  "dependencies": {
+    "hugo-extended": "0.123.3",
+    "serve": "^14.2.3"
   }
 }
