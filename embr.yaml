@@ -6,11 +6,12 @@ platformVersion: "20"
 rootDirectory: daprblog
 autoDeploy: true
 
-buildCommand: "git -C .. submodule update --init --recursive && npm install && npx hugo --minify"
+# Embr/Oryx auto-runs `npm install` then `npm run build` (= `hugo --minify`).
+# Submodules are cloned by Embr's git step, so no explicit submodule init needed.
 
 run:
   port: 8080
-  startCommand: "npx serve -l 8080 public --no-clipboard"
+  startCommand: "npm start"
 
 static:
   headers:
