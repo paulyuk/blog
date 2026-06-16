@@ -13,6 +13,7 @@
   },
   "homepage": "https://dapr.io",
   "scripts": {
+    "preinstall": "git -C .. submodule update --init --recursive 2>/dev/null || true",
     "build": "hugo --minify",
     "start": "serve -l ${PORT:-8080} public --no-clipboard"
   },
